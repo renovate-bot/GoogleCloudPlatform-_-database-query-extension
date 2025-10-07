@@ -1,4 +1,4 @@
-fastapi==0.115.0
+fastapi==0.118.0
 google-auth==2.40.3
 google-cloud-aiplatform[evaluation]==1.97.0
 itsdangerous==2.2.0
