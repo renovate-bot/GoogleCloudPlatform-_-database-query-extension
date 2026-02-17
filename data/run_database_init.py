@@ -80,8 +80,7 @@ async def initialize_data(
         # If the table already exists, drop it to avoid conflicts
         await execute_sql("DROP TABLE IF EXISTS airports CASCADE")
         # Create a new table
-        await execute_sql(
-            """
+        await execute_sql("""
             CREATE TABLE airports(
                 id INT PRIMARY KEY,
                 iata TEXT,
@@ -89,19 +88,15 @@ async def initialize_data(
                 city TEXT,
                 country TEXT
             )
-        """
-        )
+        """)
         # Insert all the data
-        values = [
-            f"""(
+        values = [f"""(
             {__escape_sql(a.id)},
             {__escape_sql(a.iata)},
             {__escape_sql(a.name)},
             {__escape_sql(a.city)},
             {__escape_sql(a.country)}
-        )"""
-            for a in airports
-        ]
+        )""" for a in airports]
         await execute_sql(f"""INSERT INTO airports VALUES {", ".join(values)}""")
         print("Airports table initialized")
 
@@ -112,8 +107,7 @@ async def initialize_data(
         # If the table already exists, drop it to avoid conflicts
         await execute_sql("DROP TABLE IF EXISTS amenities CASCADE")
         # Create a new table
-        await execute_sql(
-            """
+        await execute_sql("""
             CREATE TABLE amenities(
                 id INT PRIMARY KEY,
                 name TEXT,
@@ -139,11 +133,9 @@ async def initialize_data(
                 content TEXT NOT NULL,
                 embedding vector(3072) NOT NULL
             )
-        """
-        )
+        """)
         # Insert all the data
-        values = [
-            f"""(
+        values = [f"""(
             {__escape_sql(a.id)},
             {__escape_sql(a.name)},
             {__escape_sql(a.description)},
@@ -167,17 +159,14 @@ async def initialize_data(
             {__escape_sql(a.saturday_end_hour)},
             {__escape_sql(a.content)},
             {__escape_sql(a.embedding)}
-        )"""
-            for a in amenities
-        ]
+        )""" for a in amenities]
         await execute_sql(f"""INSERT INTO amenities VALUES {", ".join(values)}""")
         print("Amenities table initialized")
 
         # If the table already exists, drop it to avoid conflicts
         await execute_sql("DROP TABLE IF EXISTS flights CASCADE")
         # Create a new table
-        await execute_sql(
-            """
+        await execute_sql("""
             CREATE TABLE flights(
                 id INTEGER PRIMARY KEY,
                 airline TEXT,
@@ -189,11 +178,9 @@ async def initialize_data(
                 departure_gate TEXT,
                 arrival_gate TEXT
             )
-        """
-        )
+        """)
         # Insert all the data
-        values = [
-            f"""(
+        values = [f"""(
             {__escape_sql(f.id)},
             {__escape_sql(f.airline)},
             {__escape_sql(f.flight_number)},
@@ -203,17 +190,14 @@ async def initialize_data(
             {__escape_sql(f.arrival_time)},
             {__escape_sql(f.departure_gate)},
             {__escape_sql(f.arrival_gate)}
-        )"""
-            for f in flights
-        ]
+        )""" for f in flights]
         await execute_sql(f"""INSERT INTO flights VALUES {", ".join(values)}""")
         print("Flights table initialized")
 
         # If the table already exists, drop it to avoid conflicts
         await execute_sql("DROP TABLE IF EXISTS tickets CASCADE")
         # Create a new table
-        await execute_sql(
-            """
+        await execute_sql("""
             CREATE TABLE tickets(
                 user_id TEXT,
                 user_name TEXT,
@@ -225,31 +209,25 @@ async def initialize_data(
                 departure_time TIMESTAMP,
                 arrival_time TIMESTAMP
             )
-        """
-        )
+        """)
         print("Tickets table initialized")
 
         # If the table already exists, drop it to avoid conflicts
         await execute_sql("DROP TABLE IF EXISTS policies CASCADE")
         # Create a new table
-        await execute_sql(
-            """
+        await execute_sql("""
             CREATE TABLE policies(
                 id INT PRIMARY KEY,
                 content TEXT NOT NULL,
                 embedding vector(3072) NOT NULL
             )
-        """
-        )
+        """)
         # Insert all the data
-        values = [
-            f"""(
+        values = [f"""(
             {__escape_sql(p.id)},
             {__escape_sql(p.content)},
             {__escape_sql(p.embedding)}
-        )"""
-            for p in policies
-        ]
+        )""" for p in policies]
         await execute_sql(f"""INSERT INTO policies VALUES {", ".join(values)}""")
         print("Policies table initialized")
 
