@@ -22,8 +22,8 @@ from fastapi import APIRouter, Body, FastAPI, HTTPException, Request
 from fastapi.responses import PlainTextResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from google.auth.transport import requests  # type:ignore
-from google.oauth2 import id_token  # type:ignore
+from google.auth.transport import requests  # type: ignore
+from google.oauth2 import id_token  # type: ignore
 from markdown import markdown
 from starlette.middleware.sessions import SessionMiddleware
 
