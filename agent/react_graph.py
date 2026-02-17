@@ -71,7 +71,7 @@ def __get_tool_to_run(tool: ToolboxTool, config: RunnableConfig):
             # getters are used by the tool. To prevent validation errors,
             # filter the incoming getters to include only those that this
             # specific tool requires.
-            core_tool = tool._ToolboxTool__core_tool  # type:ignore
+            core_tool = tool._ToolboxTool__core_tool  # type: ignore
             required_auth_keys = set(core_tool._required_authz_tokens)
             for auth_list in core_tool._required_authn_params.values():
                 required_auth_keys.update(auth_list)
